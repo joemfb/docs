@@ -55,6 +55,7 @@ or `48.879`, whose parent is `~mun`, `0xef`, `239`.  The parent of
 - `noun`: an `atom` or a `cell`
 - `atom`: any natural number
 - `cell`: any ordered pair of `noun`s
+<<<<<<< HEAD
 - `subject`: a `noun` - the data against which a `formula` is evaluated
 - `formula`: a `cell` - any of the Nock formula numbers (0-10) or a pair of formulas that resolves to a cell.
 - `product`: a `noun` - the result of evaluating a `formula` against a `subject`
@@ -64,12 +65,27 @@ or `48.879`, whose parent is `~mun`, `0xef`, `239`.  The parent of
 ### Hoon
 
 > Hoon is a strict, higher-order typed functional language that compiles itself to Nock.
+=======
+- `subject`: a `noun` - the argument against which a `formula` is evaluated
+- `formula`: a `noun` - any of the Hoon formula numbers (0-10), followed by *(TODO: ?)*
+- `product`: a `noun` - the result of evaluating a `formula` against a `subject`
+
+*See [Nock definition](../../nock/definition/)*
+
+### Hoon
+
+> Hoon is a strict, higher-order typed functional language which compiles itself to Nock.
+>>>>>>> 04a94010c77ca4c8eb4d9876e1586a4b8069b539
 
 ###### `span`: an inferred type
 
 A `span` defines a set (finite or infinite) of `noun`s and ascribes some semantics to it. There is no Hoon syntax for a `span`; it is always produced as the inferred range of an expression (`twig`).
 
+<<<<<<< HEAD
 *See [basic types](/hoon/basic/#-type-span-and-mold).*
+=======
+*See [basic types](../../hoon/basic/#-type-span-and-mold)*
+>>>>>>> 04a94010c77ca4c8eb4d9876e1586a4b8069b539
 
 ###### `mold`: a type constructor / validator
 
@@ -165,11 +181,6 @@ A `twig` is the name for any Hoon expression, and for the AST node representing 
 - `stem`: an atomic symbol (`@tas`) - the name of a `twig`
 - `bulb`: The `mold` of the `twig`'s arguments.
 
-A `twig` is either a `moss` ("mossy") or a `seed` ("woody"):
-
-- `moss`: a `twig` whose `product` is used as a `mold`
-- `seed`: a `twig` whose `product` could be anything
-
 The vast majority of `twig`s have a *regular form*, beginning with either a keyword `sigil` or a digraph `rune`. Some `twig`s also have a syntactic *irregular form*, a handful have *only* an *irregular form*.
 
 - `sigil`: a keyword used to begin a `twig`
@@ -178,9 +189,9 @@ Hoon does not have reserved words, but `sigil`s (prefixed with `:`), which are e
 
 - `rune`: a pair of ASCII symbols used to begin a `twig` - the first symbol represents a family of related `twig`s. For example, the [`?` family](../../hoon/twig/wut-test/) are all conditionals.
 
-*regular forms* can alternate between *tall* and *wide* (or *flat*) syntax, *irregular formas* can use only the *wide*/*flat* syntax.
+*regular forms* can alternate between *tall* and *wide* (or *flat*) syntax, *irregular forms* can use only the *wide*/*flat* syntax.
 
-*See [`twig` concept](../../hoon/concepts/#-twig-expression), [expressions](../../hoon/twig/), and [syntax](../../hoon/syntax/)*
+*See [`twig` concept](../../hoon/concepts/#-twig-expression), [expressions](../../hoon/twig/), and [syntax](../../hoon/syntax/)*.
 
 ###### `limb`: attribute or variable reference
 
@@ -197,7 +208,7 @@ Hoon has no scope or symbol-table; there is only the `subject`. To "declare" a "
 
 A `face` wraps a name (`@tas`) around a `span`.
 
-*See [advanced types](../../hoon/advanced/#-face-aliases-and-bridges)*
+*See [advanced types](../../hoon/advanced/#-face-aliases-and-bridges)*.
 
 ###### `nest`: a type-casting operation
 
