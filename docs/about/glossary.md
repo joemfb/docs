@@ -55,43 +55,41 @@ or `48.879`, whose parent is `~mun`, `0xef`, `239`.  The parent of
 - `noun`: an `atom` or a `cell`
 - `atom`: any natural number
 - `cell`: any ordered pair of `noun`s
-- `subject`: a `noun` - the argument against which a `formula` is evaluated
-- `formula`: a `noun` - any of the Hoon formula numbers (0-10), followed by *(TODO: ?)*
+- `subject`: a `noun` - the data against which a `formula` is evaluated
+- `formula`: a `cell` - any of the Nock formula numbers (0-10) or a pair of formulas that resolves to a cell.
 - `product`: a `noun` - the result of evaluating a `formula` against a `subject`
 
-*See [Nock definition](../../nock/definition/)*
+*See [Nock definition](/nock/definition/).*
 
 ### Hoon
 
-> Hoon is a strict, higher-order typed functional language which compiles itself to Nock.
+> Hoon is a strict, higher-order typed functional language that compiles itself to Nock.
 
 ###### `span`: an inferred type
 
 A `span` defines a set (finite or infinite) of `noun`s and ascribes some semantics to it. There is no Hoon syntax for a `span`; it is always produced as the inferred range of an expression (`twig`).
 
-*See [basic types](../../hoon/basic/#-type-span-and-mold)*
+*See [basic types](/hoon/basic/#-type-span-and-mold).*
 
 ###### `mold`: a type constructor / validator
 
 A mold is an idempotent `gate` (function), accepting any `noun` and normalizing it to a range.
 
-- `icon`: the `span` of a `mold`
-- `bunt`: *(TODO: ??)*
+- `bunt`: the default value of a `mold`
+- `icon`: the `span` of a `bunt`
 
-*See [`mold` `twig`s](../../hoon/twig/buc-mold/)*
+*See [`mold` `twig`s](/hoon/twig/buc-mold/).*
 
 ###### `gate`: a function, lambda or closure
 
-*TODO: simplify description*
-
-A `gate` is a specialized `core` with only one `arm` (whose name is the empty string (the symbol `$`). To call a `gate` on an argument, replace the `sample` (at tree address `6` in the `core`) with the argument, and then compute the `arm`.
+A `gate` is a `core` with one `arm`. To call a `gate` on an argument, replace the `sample` (at tree address `6` in the `core`) with the argument, and then compute the `arm`.
 
 The `payload` of a `gate` has a shape of `{sample context}`.
 
-- `sample`: the argument *(TODO: or plural?)* of a `gate`
-- `context`: the subject in *(TODO: against?)* which a `gate` was defined
+- `sample`: the argument
+- `context`: the subject in which a `gate` was defined
 
-+*See [basic types](../../hoon/basic/#-core-p-span-q-map-term-span), [`%-` or `:call`](../../hoon/twig/cen-call/hep-call/) (the `twig` for calling a `gate`)*
+*See [basic types](/hoon/basic/#-core-p-span-q-map-term-span), [`%-` or `:call`](/hoon/twig/cen-call/hep-call/) (the `twig` for calling a `gate`).*
 
 ###### `core`: a code-data `cell`
 
@@ -104,45 +102,37 @@ The code (`battery`) is the head, the data (`payload`) is the tail. All code-dat
 
 - `wet`: polymorphic by means of *genericity*
 
-*TODO: simplify*
-
-> When we call a `wet` `arm`, we're essentially using the `twig` as a macro. We are not generating new code for every call site; we are creating a new type analysis path, which works as if we expanded the callee with the caller's context.
+A `wet` `arm` uses the `twig` as a macro. We create a new type analysis path, which works as if we expanded the callee with the caller's context.
 
 - `dry`: polymorphic by means of *variance*
 
 For a `dry` `arm`, we ask, is the new `payload` compatible with the old `payload` (against which the `core` was compiled)?
 
-Every `dry` `core` has a `metal` *(TODO: check)* which defines its *variance* model (ie, the properties of the `span` of a compatible `core`).
-
-*TODO: is the core dry, the arm dry, or both?*
+Every `core` has a `metal` which defines its *variance* model (ie, the properties of the `span` of a compatible `core`).
 
 - `gold`: *invariant*
 - `lead`: *bivariant*
 - `zync`: *covariant*
 - `iron`: *contravariant*
 
-*See [advanced types](../../hoon/advanced)*
+*See [advanced types](/hoon/advanced)*.
 
 ###### `arm`: a named, functionally-computed attribute of a `core`
 
 The `twig` of each `arm` is compiled to a Nock formula, with the enclosing `core` itself as the subject.
 
-*See [basic types](../../hoon/basic)*
+*See [basic types](/hoon/basic)*.
 
-###### `foot`: a `wet` or `dry` `twig`
-
-*TODO: any `twig`, or always an `arm` within a `battery`?*
+###### `foot`: a `wet` or `dry` `arm`
 
 ###### `atom`
 
-A Hoon `atom` is a Nock `atom`, with two additional pieces of metadata (TODO: ?): an `aura`, and a `unit`.
+A Hoon `atom` is a Nock `atom`, with two additional pieces of metadata: an `aura`, and an optional constant.
 
-- `unit`: a nullable pointer (TODO: ?), or a Maybe
+`atom`s are `warm` or `cold` based on whether the constant exists.
 
-`atom`s are said to be `warm` or `cold` based on their `unit`
-
-- `warm`: if the `unit` is `~` (null), any `atom` is in the `span`
-- `cold`: if the `unit` is `[~ x]`, where `x` is any `atom`, its only legal value is the constant `x`. *(TODO: what does this actually mean? What is the consequence of illegality?)*
+- `warm`: if the constant is `~` (null), any `atom` is in the `span`
+- `cold`: if the constant is `[~ atom]`, its only legal value is `atom`.
 
 *See [basic types](../../hoon/basic/#-atom-p-term-q-unit-atom)*
 
@@ -154,6 +144,8 @@ A Hoon `atom` is a Nock `atom`, with two additional pieces of metadata (TODO: ?)
 
 *TODO: are `aura`s always `mold`s? just the built-in `aura`s?*
 
+name equivalence rather than struc: name for atom type
+
 > Auras are a lightweight, advisory representation of the units, semantics, and/or syntax of an `atom`. An `aura` is an atomic string; two auras are compatible if one is a prefix of the other.
 >
 > For instance, @t means UTF-8 text (LSB low), @ta means ASCII text, and @tas means an ASCII symbol. @u means an unsigned integer, @ud an unsigned decimal, @ux an unsigned hexadecimal. You can use a @ud atom as a @u or vice versa, but not as a @tas.
@@ -161,13 +153,13 @@ A Hoon `atom` is a Nock `atom`, with two additional pieces of metadata (TODO: ?)
 > Auras are truly soft; you can turn any `aura` into any other, statically, by casting through the empty `aura` `@`. Hoon is not dependently typed and can't statically enforce data constraints (for example, it can't enforce that a `@tas` is really a symbol).
 >
 
-- `term` (`@tas`): a symbol - an atomic ASCII string which obeys symbol rules: lowercase and digit only, infix hyphen ("worm-case"), first character must be lowercase *(TODO: alphabetic?)*.
+- `term` (`@tas`): a symbol - an atomic ASCII string which obeys symbol rules: lowercase and digit only, infix hyphen ("worm-case"), first character must be lowercase alphabetic.
 
 - `cord` (`@t`): UTF-8 text, least-significant-byte first
 
 - `char` (`@tD`): a character, a single unicode byte (for multi-byte characters and codepoints, see `@c`)
 
-- `tape` (`(list char)`): a `tape` is not an `aura`, but a `mold` for a collection where every item has an `aura` of `char` *(TODO: is this for easy indexing vs `@t`?)*
+- `tape` (`(list char)`): a `tape` is not an `aura`, but a `mold` for a list where every item has an `aura` of `char`
 
 *See [basic types](../../hoon/basic/#-atom-p-term-q-unit-atom)*
 
@@ -179,12 +171,12 @@ A Hoon `atom` is a Nock `atom`, with two additional pieces of metadata (TODO: ?)
 
 ###### `twig`: a Hoon expression
 
-A `twig` is the name for any Hoon expression, and for the AST node representing the expression as compiled to a Nock formula *(TODO: seems to be used interchangeably in the docs)*. It is a `book` with the form `{stem bulb}`.
+A `twig` is the name for any Hoon expression, and for the AST node representing the expression as compiled to a Nock formula. It is a `book` with the form `{stem bulb}`.
 
 - `book`: a tagged-union
 - `page`: an item in a `book`
-- `stem`: an atomic symbol (`@tas`) - uniquely identifies a `twig` *(TODO: ?)*
-- `bulb`: The `bulb` for each `stem` has its own type, usually a tuple, sometimes a list or a map.
+- `stem`: an atomic symbol (`@tas`) - the name of a `twig`
+- `bulb`: The `mold` of the `twig`'s arguments.
 
 A `twig` is either a `moss` ("mossy") or a `seed` ("woody"):
 
@@ -216,27 +208,10 @@ To resolve a `limb` named "foo", the `subject` is searched depth-first, head-fir
 
 Hoon has no scope or symbol-table; there is only the `subject`. To "declare" a "variable" is to construct a new `subject`: `[variable old-subject]`.
 
-A `face` is a `span` *(TODO: ?)* with a label (`@tas`) wrapped around it.
-
-- `taco`: a `symbol` (for a *type-inferred* `face`), or a `symbol` *with* a `mold` (for a *type-checked* `face`)
-
-*TODO: check these*
-
-- `tune`: advanced `face`s:
-    - `alias`: a `face` that is a lazy reference to another `face`
-    - `bridge`: a `face` that references a `twig`, against which the `face` label is resolved
+A `face` wraps a name (`@tas`) around a `span`.
 
 *See [advanced types](../../hoon/advanced/#-face-aliases-and-bridges)*
 
 ###### `nest`: a type-casting operation
 
-*TODO:*
-
-### Arvo
-
-> Arvo is a nonpreemptive OS kernel, a single-threaded event interpreter.
-
-- `mark`
-- `generator`
-
-*... TODO*
+`nest` checks if the type of the second child is a subset of the type of the first chile. That's a short summary. To go in-depth, see [advanced types](../../hoon/advanced/).
