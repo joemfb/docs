@@ -138,36 +138,23 @@ A Hoon `atom` is a Nock `atom`, with two additional pieces of metadata: an `aura
 
 ###### `aura`: a soft `atom` type
 
-*alternately `odor`*
+`aura` is a name for an atom type. It represents the structure of an `atom` in a string beginning with `@`. Any `aura` may change into any other by casting it through `@`, which by itself is an empty `aura`: [nominal equivalence](https://en.wikipedia.org/wiki/Nominal_type_system), rather than [structural equivalence](https://en.wikipedia.org/wiki/Structural_type_system).
 
-*TODO: write a short summary*
-
-*TODO: are `aura`s always `mold`s? just the built-in `aura`s?*
-
-name equivalence rather than struc: name for atom type
-
-> Auras are a lightweight, advisory representation of the units, semantics, and/or syntax of an `atom`. An `aura` is an atomic string; two auras are compatible if one is a prefix of the other.
->
-> For instance, @t means UTF-8 text (LSB low), @ta means ASCII text, and @tas means an ASCII symbol. @u means an unsigned integer, @ud an unsigned decimal, @ux an unsigned hexadecimal. You can use a @ud atom as a @u or vice versa, but not as a @tas.
->
-> Auras are truly soft; you can turn any `aura` into any other, statically, by casting through the empty `aura` `@`. Hoon is not dependently typed and can't statically enforce data constraints (for example, it can't enforce that a `@tas` is really a symbol).
->
-
-- `term` (`@tas`): a symbol - an atomic ASCII string which obeys symbol rules: lowercase and digit only, infix hyphen ("worm-case"), first character must be lowercase alphabetic.
+- `term` (`@tas`): a symbol - an atomic ASCII string which obeys symbol rules: lowercase and digit only, infix hyphen ("kebab-case"), first character must be lowercase alphabetic.
 
 - `cord` (`@t`): UTF-8 text, least-significant-byte first
 
-- `char` (`@tD`): a character, a single unicode byte (for multi-byte characters and codepoints, see `@c`)
+- `char` (`@td`): a character, a single unicode byte (for multi-byte characters and codepoints, see `@c`)
 
-- `tape` (`(list char)`): a `tape` is not an `aura`, but a `mold` for a list where every item has an `aura` of `char`
+- `tape` (`(list char)`): a `tape` is not an `aura`, but a `mold` for a list where every item has an `aura` of `char`.
 
-*See [basic types](../../hoon/basic/#-atom-p-term-q-unit-atom)*
+*See [basic types](../../hoon/basic/#-atom-p-term-q-unit-atom)*.
 
 ###### `loobean`: a Hoon boolean
 
 `0` (`%.y`) is *true*, `1` (`%.n`) is *false*.
 
->Why? It's fresh, it's different, it's new. And it's annoying. And it keeps you on your toes. And it's also just intuitively right.
+> Why? It's fresh, it's different, it's new. And it's annoying. And it keeps you on your toes. And it's also just intuitively right.
 
 ###### `twig`: a Hoon expression
 
