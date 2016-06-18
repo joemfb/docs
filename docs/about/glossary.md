@@ -269,6 +269,18 @@ set of nouns in the second span is provably a subset of the first.
 > Why? It's fresh, it's different, it's new. And it's annoying. And it
 > keeps you on your toes. And it's also just intuitively right.
 
+###### `mark`: a type definition
+
+A mark is fundamentally a type definition, but accessible at the arvo level. Each mark is defined in the `/mar` directory. Some marks have conversion routines to other marks, and some have diff, patch, and merge algorithms. None of these are required for a mark to exist, however.
+
+*See [network](../../arvo/network/)*.
+
+###### `clam`: a type validator function
+
+In Hoon, when types are called as functions, they serve as a validator function called a "clam" -- that is, a function whose domain is all nouns, and range is the given type. if a clam is passed a value of its own type, it produces that value. Otherwise, it produces the default value (aka the "bunt") of its type.
+
+*See [network](../../arvo/network/)*.
+
 ### Dojo
 
 ###### `source`: a type of :dojo command
