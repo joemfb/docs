@@ -268,3 +268,47 @@ set of nouns in the second span is provably a subset of the first.
 
 > Why? It's fresh, it's different, it's new. And it's annoying. And it
 > keeps you on your toes. And it's also just intuitively right.
+
+###### `mark`: a type definition
+
+A mark is fundamentally a type definition, but accessible at the arvo level. Each mark is defined in the `/mar` directory. Some marks have conversion routines to other marks, and some have diff, patch, and merge algorithms. None of these are required for a mark to exist, however.
+
+*See [network](../../arvo/network/)*.
+
+###### `clam`: a type validator function
+
+In Hoon, when types are called as functions, they serve as a validator function called a "clam" -- that is, a function whose domain is all nouns, and range is the given type. if a clam is passed a value of its own type, it produces that value. Otherwise, it produces the default value (aka the "bunt") of its type.
+
+*See [network](../../arvo/network/)*.
+
+### Dojo
+
+###### `source`: a type of :dojo command
+
+A source is just something that can be printed to your console or the result of some computation. Sources can be chained together.
+
+*See [Shell](../../using/shell/)*.
+
+###### `sink`: a type of :dojo command
+
+A sink is an effect: a change to the filesystem, a network message, a change to your environment, or typed message to an app. Sinks cannot be chained, we can only produce one effect per command.
+
+*See [Shell](../../using/shell/)*.
+
+###### `generator`: a hoon script
+
+Generators are simple hoon scripts loaded from the filesystem. They live in `gen/`. Generators start with a `+` (lus). E.g `+ls` is similar to Unix ls. Accepts a path.
+
+*See [Shell](../../using/shell/)*.
+
+###### `hood`: the system daemon
+
+The hood is the system daemon. See `gen/hood` and `app/hood`. ~~Hood daemons~~ begin with `|` (bar). E.g. `|start` starts an app. Accepts an app name.
+
+*See [Shell](../../using/shell/)*.
+
+### Arvo
+
+###### `gall`: a stateful server
+
+`gall` apps are stateful servers, sort of like unix daemons. One familiar one is app/talk.hoon which is the source code for :talk the urbit messaging transport layer. And there's also app/dojo.hoon — that's your shell.
