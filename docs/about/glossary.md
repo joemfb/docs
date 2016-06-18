@@ -268,3 +268,29 @@ set of nouns in the second span is provably a subset of the first.
 
 > Why? It's fresh, it's different, it's new. And it's annoying. And it
 > keeps you on your toes. And it's also just intuitively right.
+
+### Dojo
+
+###### `source`: a type of :dojo command
+
+A source is just something that can be printed to your console or the result of some computation. Sources can be chained together.
+
+*See [Shell](../../using/shell/)*.
+
+###### `sink`: a type of :dojo command
+
+A sink is an effect: a change to the filesystem, a network message, a change to your environment, or typed message to an app. Sinks cannot be chained, we can only produce one effect per command.
+
+*See [Shell](../../using/shell/)*.
+
+###### `generator`: a hoon script
+
+Generators are simple hoon scripts loaded from the filesystem. They live in `gen/`. Generators start with a `+` (lus). E.g `+ls` is similar to Unix ls. Accepts a path.
+
+*See [Shell](../../using/shell/)*.
+
+###### `hood`: the system daemon
+
+The hood is the system daemon. See `gen/hood` and `app/hood`. ~~Hood daemons~~ begin with `|` (bar). E.g. `|start` starts an app. Accepts an app name.
+
+*See [Shell](../../using/shell/)*.
