@@ -294,3 +294,9 @@ Generators are simple hoon scripts loaded from the filesystem. They live in `gen
 The hood is the system daemon. See `gen/hood` and `app/hood`. ~~Hood daemons~~ begin with `|` (bar). E.g. `|start` starts an app. Accepts an app name.
 
 *See [Shell](../../using/shell/)*.
+
+### Arvo
+
+###### `gall`: a stateful server
+
+`gall` apps are stateful servers, sort of like unix daemons. One familiar one is app/talk.hoon which is the source code for :talk the urbit messaging transport layer. And there's also app/dojo.hoon — that's your shell.
