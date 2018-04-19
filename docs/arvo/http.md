@@ -153,8 +153,8 @@ Here's the move that sends the HTTP request:
 > Remember, we are expected to produce a *list* of moves. Note the `~`
 > after the move in the full example. This is a convenient shortcut for
 > creating a list of a single element.  It's part of a small family of
-> such shortcuts.  `~[a b c]` is `[a b c ~]`, `[a b c]~` is `[[a b c]
-> ~]` and `\`[a b c]` is `[~ a b c]`. These may be mixed and matched to
+> such shortcuts.  `~[a b c]` is `[a b c ~]`, `[a b c]~` is `[[a b c] ~]`
+> and ``[a b c]` is `[~ a b c]`. These may be mixed and matched to
 > create various convoluted structures and emojis.
 
 The correspondence between this move and `{bone card}` can be hard to

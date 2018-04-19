@@ -1234,7 +1234,35 @@ stack trace on failure. `++slap` would cause crash on failure.
 We haven't yet discussed either `++clef` or `++coup`. We'll start with
 `++coup` to finish the discussion of the computation.
 
-\``++  coup                                            ::  toon to bolt       |=  cof=cafe       |*  [ton=toon fun=$+(* *)]       :-  p=cof       ^=  q       ?-  -.ton         %2  [%2 p=p.ton]         %0  [%0 p=*(set beam) q=(fun p.ton)]         %1  ~&  [%coup-need ((list path) p.ton)]             =-  ?-  -.faw                   &  [%1 p=(sa (turn p.faw |=(a=beam [a *(list tank)])))]                   |  [%2 p=p.faw]                 ==             ^=  faw             |-  ^-  (each (list beam) (list tank))             ?~  p.ton  [%& ~]             =+  nex=$(p.ton t.p.ton)             =+  pax=(path i.p.ton)             ?~  pax  [%| (smyt pax) ?:(?=(& -.nex) ~ p.nex)]             =+  zis=(tome t.pax)             ?~  zis               [%| (smyt pax) ?:(?=(& -.nex) ~ p.nex)]             ?-  -.nex               &  [%& u.zis p.nex]               |  nex             ==       ==`
+```
+++  coup                                            ::  toon to bolt
+       |=  cof=cafe
+       |*  [ton=toon fun=$+(* *)]
+       :-  p=cof
+       ^=  q
+       ?-  -.ton
+         %2  [%2 p=p.ton]
+         %0  [%0 p=*(set beam) q=(fun p.ton)]
+         %1  ~&  [%coup-need ((list path) p.ton)]
+             =-  ?-  -.faw
+                   &  [%1 p=(sa (turn p.faw |=(a=beam [a *(list tank)])))]
+                   |  [%2 p=p.faw]
+                 ==
+             ^=  faw
+             |-  ^-  (each (list beam) (list tank))
+             ?~  p.ton  [%& ~]
+             =+  nex=$(p.ton t.p.ton)
+             =+  pax=(path i.p.ton)
+             ?~  pax  [%| (smyt pax) ?:(?=(& -.nex) ~ p.nex)]
+             =+  zis=(tome t.pax)
+             ?~  zis
+               [%| (smyt pax) ?:(?=(& -.nex) ~ p.nex)]
+             ?-  -.nex
+               &  [%& u.zis p.nex]
+               |  nex
+             ==
+       ==
+```
 
 Recall that a toon is either a `%0` value, a `%1` block, or a `%2`
 failure. Converting a `%2` toon failure into a `%2` bolt failure is
@@ -1743,7 +1771,7 @@ and call `++camp` to produce a clay request for the resource.
 We put the resource in our block list in `q.kig` so that we save the
 fact that we're blocked. We then produce the `%warp` request to clay for
 the resource. Our request path has the format
-\`/[our-ship]/[task-number]/[block-number]'.
+`/[our-ship]/[task-number]/[block-number]`.
 
 We'll now describe how each of the individual silks are processed in
 `++make`.

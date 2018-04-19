@@ -11,8 +11,7 @@ title: $@ "bucpat"
   
 ## Normalizes to
 
-Default, if the sample is an atom; `p`, if the head of the sample
-is an atom; `q` otherwise.
+`p`, if the sample is an atom; `q` otherwise.
 
 ## Defaults to
 
