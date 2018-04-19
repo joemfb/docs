@@ -248,21 +248,21 @@ roads, we also nest jet state.  The jet state in the road is:
 In case you understand Hoon, `das` (cold state) is a `++dash`, 
 and `har_p` (warm state) is a map from battery to `++calx`:
 
-    ++  bane  ,@tas                                 ::  battery name
-    ++  bash  ,@uvH                                 ::  label hash
-    ++  bosh  ,@uvH                                 ::  local battery hash
-    ++  batt  ,*                                    ::  battery
+    ++  bane  @tas                                  ::  battery name
+    ++  bash  @uvH                                  ::  label hash
+    ++  bosh  @uvH                                  ::  local battery hash
+    ++  batt  *                                     ::  battery
     ++  calf                                        ::  
-      $:  jax=,@ud                                  ::  hot core index
-          hap=(map ,@ud ,@ud)                       ::  axis/hot arm index
-          lab=path                                  ::  label as path
-          jit=*                                     ::  arbitrary data
+      $:  jax/@ud                                   ::  hot core index
+          hap/(map @ud @ud)                         ::  axis/hot arm index
+          lab/path                                  ::  label as path
+          jit/*                                     ::  arbitrary data
       ==                                            ::
     ++  calx  (trel calf (pair bash cope) club)     ::  cached by battery
     ++  clog  (pair cope (map batt club))           ::  identity record
     ++  club  (pair corp (map term nock))           ::  battery pattern
     ++  cope  (trel bane axis (each bash noun))     ::  core pattern
-    ++  core  ,*                                    ::  core
+    ++  core  *                                     ::  core
     ++  corp  (each core batt)                      ::  parent or static
     ++  dash  (map bash clog)                       ::  jet system
 
@@ -510,7 +510,7 @@ c3__punt.  This feature has a cost: the jet runs in a subroad.
 Finally, if `liv` is no (`|`, 1), the jet is off and doesn't run.
 
 It should be easy to see how the tree of cores gets declared -
-precisely, in `j/dash.c`.  We declare the hierarchy as a tree 
+precisely, in `j/tree.c`.  We declare the hierarchy as a tree 
 of `u3j_core` structures, each of which comes with a static list 
 of arms `arm_u` and sub-cores `dev_u`.
 

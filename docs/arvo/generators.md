@@ -14,8 +14,8 @@ interact with apps. Generators are the "porcelain" layer. This is why
 when you run a command like `+ls` or `|merge`, there are no marks in
 sight.
 
-We've used generators before, back in [Basic
-Operation](/docs/using/admin). At that point, we just used the
+We've used generators before, back in
+[Basic Operation](/docs/using/admin). At that point, we just used the
 generators to produce values -- we didn't pipe their results into apps.
 In the dojo cast, the role of a generator is to take a list of arguments
 and produce a value, which is often, though not always, piped into an
@@ -35,10 +35,18 @@ normal arguments for `|merge`:
     [syd=%home her=~fintud-macrep sud=%they gem=%auto]
 
 This didn't run any merge, it just constructed the command that, if sent
-to `:hood`, would run it. Note first that, even though it's not printed,
-this value has mark `kiln-merge`. Also, the merge strategy `gem=%auto`
+to `:hood`, would run it. Note that the merge strategy `gem=%auto`
 was added automatically. Optional arguments are straightforward with
 generators.
+
+Even though it's not printed, this value has the mark `kiln-merge`:
+
+```
+> ? +hood/merge %home our %they
+    %kiln-merge
+  {syd/@tas her/@p sud/@tas cas/?({$da p/@da} {$tas p/@tas} {$ud p/@ud}) gem/?($auto ?($fine $init $mate $meet $meld $that $this))}
+[syd=%home her=~fintud-macrep sud=%they gem=%auto]
+```
 
 In general, generators are prepended by either `+` or `|`. The general
 form is `+generator`, but often generators are created specifically to
@@ -56,8 +64,8 @@ shortened to `|generator <args>`.
 Let's write a generator for a modified version of `:examples-pong` from
 the chapter on [Network Messages](/docs/arvo/system/network). Recall
 that `:examples-pong` takes an urbit address, which is of mark `urbit`,
-and sends that urbit the message `'howdy'`. First--without a
-generator--let's make `:examples-ping` that does the same, except that
+and sends that urbit the message `'howdy'`. First -- without a
+generator -- let's make `:examples-ping` that does the same, except that
 it lets the user optionally specify the message as well.
 
 We'll need a new mark for our arguments. Let's call it

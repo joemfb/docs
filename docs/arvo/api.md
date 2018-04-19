@@ -71,7 +71,7 @@ for events) separately.
 ## Reading
 
 A connector exposes a tree of data.  Every read request has a
-`care`, which is generally either `%x` or `%y.  `%x` is a request
+`care`, which is generally either `%x` or `%y`.  `%x` is a request
 for a particular piece of data, while `%y` is a request for a
 directory listing.  Roughly, `%x` means Unix `cat` and `%y` means
 Unix `ls`.

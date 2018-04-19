@@ -152,8 +152,8 @@ Cheat sheet:
 -   `?~` ([wutsig](../../hoon/twig/wut-test/sig-ifno/)) is basically an
     if-then-else that checks whether condition `p` is `~` (null). `?~`
     is slightly different from `?:(~ %tru %fal)` in that `?~` reduces to
-    `?:($=(%type value) %tru %false)`. `$=`
-    ([buctis](../../hoon/twig/buc-mold/tis-coat/)) tests whether value `q` is
+    `?:(?=($~ value) %tru %false)`. `?=`
+    ([wuttis](../../hoon/twig/wut-test/tis-fits/)) tests whether value `q` is
     of type `p`.
 <!-- One thing to watch out for in hoon: if you do `?~`, it
       affects the type of the conditional value: XXexample -->
