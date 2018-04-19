@@ -26,7 +26,7 @@ Product: a mold which applies `p` if its sample is an atom,
 
 Regular form: *2-fixed*.
 
-Example:
+## Example:
 
 ```
 ~zod:dojo> =a $@(%foo $:(p=%bar q=@ud))
